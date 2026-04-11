@@ -5,4 +5,9 @@ export type TypeLoginUser = {
 
 export type TypeLoginUserResponse = {
 	token: string;
+	user: {
+		id: number;
+		name: string;
+		email: string;
+	};
 };

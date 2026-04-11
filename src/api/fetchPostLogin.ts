@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { POST_LOGIN_ENDPOINT } from '@/utils/routes';
 
-import type { TypeLoginUser } from '@/src/types/auth';
+import type { TypeLoginUser, TypeLoginUserResponse } from '@/src/types/auth';
 
 export const fetchPostLogin = async (payload: TypeLoginUser) => {
 	try {
@@ -11,7 +11,7 @@ export const fetchPostLogin = async (payload: TypeLoginUser) => {
 			password: payload.password,
 		});
 
-		return response.data;
+		return response.data as TypeLoginUserResponse;
 	} catch (err) {
 		console.error(`[fetchPostLogin] error: ${err}`);
 	}

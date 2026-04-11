@@ -1,12 +1,13 @@
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, StyleProp, TextStyle } from 'react-native';
 
 type TitleProps = {
 	children: React.ReactNode;
 	size?: 'h1' | 'h2' | 'h3' | 'h4';
+	style?: StyleProp<TextStyle>;
 };
 
-export const Title = ({ children, size = 'h1' }: TitleProps) => {
-	return <Text style={styles[size]}>{children}</Text>;
+export const Title = ({ children, size = 'h1', style }: TitleProps) => {
+	return <Text style={[styles[size], style]}>{children}</Text>;
 };
 
 const styles = StyleSheet.create({

@@ -6,7 +6,7 @@ import { LoginForm } from '@/src/UI/organisms/auth/LoginForm';
 export default function Index() {
 	return (
 		<View style={styles.container}>
-			<Title>Banco XYZ</Title>
+			<Title style={{ marginBottom: 40 }}>Banco XYZ</Title>
 			<LoginForm />
 		</View>
 	);
