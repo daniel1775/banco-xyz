@@ -5,12 +5,18 @@ import { useQueryLoginUser } from '@/src/hooks/queries/useQueryLoginUser';
 
 import { FormTextField } from '@/src/UI/atoms/form/FormTextField';
 import { Button } from '@/src/UI/atoms/general/Button';
+import { useRenderError } from '@/src/hooks/auth/useRenderLoginError';
 
 export const LoginForm = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
-	const { submitLogin, isLoading } = useQueryLoginUser();
+	const { submitLogin, isLoading, error } = useQueryLoginUser();
+	const { renderError } = useRenderError({
+		error,
+		email,
+		password,
+	});
 
 	return (
 		<View style={styles.container}>
@@ -26,6 +32,7 @@ export const LoginForm = () => {
 				value={password}
 				onChangeText={setPassword}
 			/>
+			{renderError()}
 			<Button
 				label='Login'
 				onPress={() => submitLogin({ email, password })}

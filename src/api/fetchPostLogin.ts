@@ -14,5 +14,6 @@ export const fetchPostLogin = async (payload: TypeLoginUser) => {
 		return response.data as TypeLoginUserResponse;
 	} catch (err) {
 		console.error(`[fetchPostLogin] error: ${err}`);
+		throw err;
 	}
 };
