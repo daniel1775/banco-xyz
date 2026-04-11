@@ -1,6 +1,6 @@
 import { View, StyleSheet } from 'react-native';
 
-import { Title } from '@/src/UI/atoms/Title';
+import { Title } from '@/src/UI/atoms/general/Title';
 import { LoginForm } from '@/src/UI/organisms/auth/LoginForm';
 
 export default function Index() {
