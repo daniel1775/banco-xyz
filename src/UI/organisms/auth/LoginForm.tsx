@@ -2,10 +2,11 @@ import { View, StyleSheet } from 'react-native';
 import { useState } from 'react';
 
 import { useQueryLoginUser } from '@/src/hooks/queries/useQueryLoginUser';
+import { useRenderError } from '@/src/hooks/auth/useRenderLoginError';
 
 import { FormTextField } from '@/src/UI/atoms/form/FormTextField';
 import { Button } from '@/src/UI/atoms/general/Button';
-import { useRenderError } from '@/src/hooks/auth/useRenderLoginError';
+import { saveAuthUser } from '@/src/store/user';
 
 export const LoginForm = () => {
 	const [email, setEmail] = useState('');
@@ -35,7 +36,12 @@ export const LoginForm = () => {
 			{renderError()}
 			<Button
 				label='Login'
-				onPress={() => submitLogin({ email, password })}
+				onPress={async () => {
+					const user = await submitLogin({ email, password });
+					if (user) {
+						saveAuthUser(user);
+					}
+				}}
 				isLoading={isLoading}
 			/>
 		</View>
