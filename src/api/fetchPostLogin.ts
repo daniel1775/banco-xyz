@@ -2,11 +2,13 @@ import axios from 'axios';
 
 import { POST_LOGIN_ENDPOINT } from '@/utils/routes';
 
-export const fetchPostLogin = async (email: string, password: string) => {
+import type { TypeLoginUser } from '@/src/types/auth';
+
+export const fetchPostLogin = async (payload: TypeLoginUser) => {
 	try {
 		const response = await axios.post(POST_LOGIN_ENDPOINT, {
-			email,
-			password,
+			email: payload.email,
+			password: payload.password,
 		});
 
 		return response.data;
