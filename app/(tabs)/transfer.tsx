@@ -1,9 +1,10 @@
-import { Text, View } from 'react-native';
+import { ScreenLayout } from '@/src/UI/layouts/ScreenLayout';
+import { Title } from '@/src/UI/atoms/general/Title';
 
 export default function TransferScreen() {
 	return (
-		<View>
-			<Text>TransferScreen</Text>
-		</View>
+		<ScreenLayout>
+			<Title>Transfer</Title>
+		</ScreenLayout>
 	);
 }
