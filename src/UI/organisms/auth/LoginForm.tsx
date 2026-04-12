@@ -26,7 +26,7 @@ export const LoginForm = () => {
 		<View style={styles.container}>
 			<FormTextField
 				placeholder='Email'
-				type='email'
+				type='string'
 				value={email}
 				onChangeText={setEmail}
 			/>

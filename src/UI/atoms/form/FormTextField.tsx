@@ -2,7 +2,7 @@ import { TextInput, StyleSheet, View } from 'react-native';
 
 type FormTextFieldProps = {
 	placeholder: string;
-	type: 'email' | 'password';
+	type: 'string' | 'password' | 'number';
 	value: string;
 	onChangeText: (text: string) => void;
 };
@@ -21,6 +21,7 @@ export const FormTextField = ({
 				placeholder={placeholder}
 				value={value}
 				onChangeText={onChangeText}
+				keyboardType={type === 'number' ? 'numeric' : 'default'}
 				secureTextEntry={type === 'password'}
 			/>
 		</View>
