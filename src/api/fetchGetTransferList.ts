@@ -14,7 +14,8 @@ export const fetchGetTransferList = async () => {
 				Authorization: `Bearer ${user?.token}`,
 			},
 		});
-		return response.data as TypeTransferListResponse;
+
+		return response.data.transfers as TypeTransferListResponse[];
 	} catch (err) {
 		console.error(`[fetchGetTransferList] error: ${err}`);
 		throw err;

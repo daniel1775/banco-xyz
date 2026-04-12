@@ -9,4 +9,12 @@ export type TypePostTransferResponse = {
 	status: string;
 };
 
-export type TypeTransferListResponse = {};
+export type TypeTransferListResponse = {
+	value: number;
+	currency: string;
+	date: string;
+	payeer: {
+		document: string;
+		name: string;
+	};
+};
