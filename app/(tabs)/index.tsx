@@ -1,13 +1,16 @@
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 
 import { useQueryGetBalance } from '@/hooks/queries/useQueryGetBalance';
+import { useGetAuthUser } from '@/src/hooks/auth/useGetAuthUser';
 
 import { ScreenLayout } from '@/src/UI/layouts/ScreenLayout';
 import { Title } from '@/src/UI/atoms/general/Title';
-import { BaseText } from '@/src/UI/atoms/general/BaseText';
+import { PersonalBalance } from '@/src/UI/organisms/balance/PersonalBalance';
 
 export default function BalanceScreen() {
 	const { userBalanceData, isLoading } = useQueryGetBalance();
+
+	const { authUser } = useGetAuthUser();
 
 	if (isLoading) {
 		return (
@@ -27,10 +30,14 @@ export default function BalanceScreen() {
 
 	return (
 		<ScreenLayout>
-			<Title>Profile</Title>
+			<Title>Personal balance</Title>
 			<View style={styles.container}>
-				<BaseText>{`Currency: ${userBalanceData?.currency}`}</BaseText>
-				<BaseText>{`Balance: ${userBalanceData?.accountBalance}`}</BaseText>
+				<PersonalBalance
+					name={authUser?.user.name}
+					email={authUser?.user.email}
+					currency={userBalanceData?.currency}
+					accountBalance={userBalanceData?.accountBalance}
+				/>
 			</View>
 		</ScreenLayout>
 	);
@@ -41,5 +48,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
+		width: '100%',
 	},
 });

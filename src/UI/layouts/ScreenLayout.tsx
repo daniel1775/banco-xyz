@@ -19,7 +19,7 @@ export const ScreenLayout = ({
 			style={[
 				styles.container,
 				{
-					paddingTop: insets.top,
+					paddingTop: insets.top + 16,
 				},
 				containerStyles,
 			]}
