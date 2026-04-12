@@ -8,3 +8,5 @@ export type TypePostTransferPayload = {
 export type TypePostTransferResponse = {
 	status: string;
 };
+
+export type TypeTransferListResponse = {};
