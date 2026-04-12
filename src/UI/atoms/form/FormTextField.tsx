@@ -24,6 +24,7 @@ export const FormTextField = ({
 				onChangeText={onChangeText}
 				keyboardType={type === 'number' ? 'numeric' : 'default'}
 				secureTextEntry={type === 'password'}
+				autoCapitalize='none'
 			/>
 		</View>
 	);

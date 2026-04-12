@@ -1,7 +1,10 @@
 import { StyleSheet, View } from 'react-native';
-import { FormTextField } from '@/UI/atoms/form/FormTextField';
 import { useState } from 'react';
+
+import { FormTextField } from '@/UI/atoms/form/FormTextField';
 import { FormDateField } from '@/UI/atoms/form/FormDateField';
+import { Button } from '@/src/UI/atoms/general/Button';
+import { useQueryPostTransfer } from '@/src/hooks/queries/useQueryPostTransfer';
 
 type CreateTransferFormProps = {};
 
@@ -10,6 +13,8 @@ export const CreateTransferForm = ({}: CreateTransferFormProps) => {
 	const [currency, setCurrency] = useState('');
 	const [payeerDocument, setPayeerDocument] = useState('');
 	const [date, setDate] = useState(new Date());
+
+	const { submitTransfer, isLoading } = useQueryPostTransfer();
 
 	return (
 		<View style={styles.container}>
@@ -26,7 +31,7 @@ export const CreateTransferForm = ({}: CreateTransferFormProps) => {
 				onChangeText={setCurrency}
 			/>
 			<FormTextField
-				placeholder='Payeer Document'
+				placeholder='Payeer document'
 				type='string'
 				value={payeerDocument}
 				onChangeText={setPayeerDocument}
@@ -34,7 +39,19 @@ export const CreateTransferForm = ({}: CreateTransferFormProps) => {
 			<FormDateField
 				value={date}
 				setValue={setDate}
-				placeholder='Date'
+				placeholder='Transfer date'
+			/>
+			<Button
+				label='Send'
+				isLoading={isLoading}
+				onPress={async () => {
+					await submitTransfer({
+						value: Number(value),
+						currency,
+						payeerDocument,
+						transferDate: date,
+					});
+				}}
 			/>
 		</View>
 	);
