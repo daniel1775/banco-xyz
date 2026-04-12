@@ -1,4 +1,4 @@
-import { TextInput, StyleSheet, View } from 'react-native';
+import { TextInput, StyleSheet, View, Text } from 'react-native';
 
 type FormTextFieldProps = {
 	placeholder: string;
@@ -15,6 +15,7 @@ export const FormTextField = ({
 }: FormTextFieldProps) => {
 	return (
 		<View>
+			<Text style={styles.label}>{`${placeholder}:`}</Text>
 			<TextInput
 				style={styles.container}
 				placeholderTextColor={'#797575ff'}
@@ -37,5 +38,8 @@ const styles = StyleSheet.create({
 		borderRadius: 5,
 		paddingHorizontal: 10,
 		fontSize: 16,
+	},
+	label: {
+		marginBottom: 4,
 	},
 });
