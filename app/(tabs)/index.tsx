@@ -30,7 +30,7 @@ export default function BalanceScreen() {
 
 	return (
 		<ScreenLayout>
-			<Title>Personal balance</Title>
+			<Title style={styles.title}>Personal balance</Title>
 			<View style={styles.container}>
 				<PersonalBalance
 					name={authUser?.user.name}
@@ -46,8 +46,10 @@ export default function BalanceScreen() {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		justifyContent: 'center',
 		alignItems: 'center',
 		width: '100%',
+	},
+	title: {
+		marginBottom: 28,
 	},
 });

@@ -30,10 +30,9 @@ export const PersonalBalance = ({
 const styles = StyleSheet.create({
 	container: {
 		alignItems: 'flex-start',
-		width: '80%',
-		borderWidth: 1,
-		borderColor: '#000000',
+		width: '90%',
 		borderRadius: 10,
 		padding: 10,
+		gap: 16,
 	},
 });
