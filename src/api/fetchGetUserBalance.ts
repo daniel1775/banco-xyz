@@ -3,6 +3,8 @@ import axios from 'axios';
 import { GET_BALANCE_ENDPOINT } from '@/utils/routes';
 import { getAuthUser } from '@/store/user';
 
+import type { TypeUserBalanceResponse } from '@/types/balance';
+
 export const fetchGetUserBalance = async () => {
 	const user = await getAuthUser();
 
@@ -12,7 +14,7 @@ export const fetchGetUserBalance = async () => {
 				Authorization: `Bearer ${user?.token}`,
 			},
 		});
-		return response.data;
+		return response.data as TypeUserBalanceResponse;
 	} catch (err) {
 		console.error(`[fetchGetUserBalance] error: ${err}`);
 		throw err;
