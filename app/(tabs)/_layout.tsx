@@ -2,10 +2,10 @@ import { Tabs } from 'expo-router';
 
 export default function TabLayout() {
 	return (
-		<Tabs>
+		<Tabs screenOptions={{ headerShown: false }}>
 			<Tabs.Screen name='index' />
-			<Tabs.Screen name='transfer-list' />
 			<Tabs.Screen name='transfer' />
+			<Tabs.Screen name='transfer-list' />
 		</Tabs>
 	);
 }

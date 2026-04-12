@@ -1,5 +1,6 @@
 import { View, StyleSheet } from 'react-native';
 import { useState } from 'react';
+import { useRouter } from 'expo-router';
 
 import { useQueryLoginUser } from '@/src/hooks/queries/useQueryLoginUser';
 import { useRenderError } from '@/src/hooks/auth/useRenderLoginError';
@@ -11,6 +12,8 @@ import { saveAuthUser } from '@/src/store/user';
 export const LoginForm = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+
+	const router = useRouter();
 
 	const { submitLogin, isLoading, error } = useQueryLoginUser();
 	const { renderError } = useRenderError({
@@ -40,6 +43,7 @@ export const LoginForm = () => {
 					const user = await submitLogin({ email, password });
 					if (user) {
 						saveAuthUser(user);
+						router.push('/(tabs)');
 					}
 				}}
 				isLoading={isLoading}
