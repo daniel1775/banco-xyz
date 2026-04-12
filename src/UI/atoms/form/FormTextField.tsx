@@ -5,6 +5,7 @@ type FormTextFieldProps = {
 	type: 'string' | 'password' | 'number';
 	value: string;
 	onChangeText: (text: string) => void;
+	label?: string;
 };
 
 export const FormTextField = ({
@@ -12,10 +13,11 @@ export const FormTextField = ({
 	type,
 	value,
 	onChangeText,
+	label,
 }: FormTextFieldProps) => {
 	return (
 		<View>
-			<Text style={styles.label}>{`${placeholder}:`}</Text>
+			{label && <Text style={styles.label}>{`${label}:`}</Text>}
 			<TextInput
 				style={styles.container}
 				placeholderTextColor={'#797575ff'}
