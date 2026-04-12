@@ -23,6 +23,13 @@ jest.mock('@/src/store/user', () => ({
 	saveAuthUser: jest.fn(),
 }));
 
+jest.mock('expo-router', () => ({
+	useRouter: () => ({
+		push: jest.fn(),
+		replace: jest.fn(),
+	}),
+}));
+
 const mockSubmitLogin = jest.fn();
 
 describe('LoginForm tests', () => {
