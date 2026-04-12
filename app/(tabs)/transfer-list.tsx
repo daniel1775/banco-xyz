@@ -1,12 +1,27 @@
+import { ScrollView, Text, View } from 'react-native';
+
 import { useQueryGetTransferList } from '@/src/hooks/queries/useQueryGetTransferList';
-import { Text, View } from 'react-native';
+import { ScreenLayout } from '@/src/UI/layouts/ScreenLayout';
+import { Title } from '@/src/UI/atoms/general/Title';
+import { TransferCard } from '@/src/UI/molecules/transfer/TransferCard';
 
 export default function TransferListScreen() {
 	const { transferList } = useQueryGetTransferList();
 
 	return (
-		<View>
-			<Text>TransferListScreen</Text>
-		</View>
+		<ScreenLayout>
+			<Title style={{ marginBottom: 40 }}>Transfer list</Title>
+			<ScrollView
+				style={{
+					width: '100%',
+				}}
+			>
+				{transferList?.map((transfer, index) => (
+					<View key={index}>
+						<TransferCard transferData={transfer} />
+					</View>
+				))}
+			</ScrollView>
+		</ScreenLayout>
 	);
 }
