@@ -33,6 +33,7 @@ export const Button = ({
 		>
 			{isLoading ? (
 				<ActivityIndicator
+					testID='activity-indicator'
 					color='#1d1d1dff'
 					size='small'
 				/>
