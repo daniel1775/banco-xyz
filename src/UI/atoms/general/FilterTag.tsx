@@ -13,10 +13,7 @@ export const FilterTag = ({ text, isSelected, onPress }: FilterTagProps) => {
 		<Pressable
 			onPress={onPress}
 			style={[
-				{
-					padding: 4,
-					borderRadius: 8,
-				},
+				styles.tag,
 				isSelected ? styles.selected : styles.notSelected,
 			]}
 		>
@@ -26,14 +23,14 @@ export const FilterTag = ({ text, isSelected, onPress }: FilterTagProps) => {
 };
 
 const styles = StyleSheet.create({
-	selected: {
-		backgroundColor: '#dfca32ff',
+	tag: {
 		padding: 8,
 		borderRadius: 8,
 	},
+	selected: {
+		backgroundColor: '#dfca32ff',
+	},
 	notSelected: {
 		backgroundColor: '#e0e0e0',
-		padding: 8,
-		borderRadius: 8,
 	},
 });

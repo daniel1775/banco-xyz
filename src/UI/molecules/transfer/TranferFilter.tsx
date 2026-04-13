@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 import { FormTextField } from '@/UI/atoms/form/FormTextField';
 import { BaseText } from '@/UI/atoms/general/BaseText';
@@ -31,17 +31,8 @@ export const TransferFilter = ({
 	};
 
 	return (
-		<View
-			style={{
-				width: '100%',
-			}}
-		>
-			<View
-				style={{
-					width: '100%',
-					marginBottom: 10,
-				}}
-			>
+		<View style={styles.container}>
+			<View style={styles.searchContainer}>
 				<FormTextField
 					placeholder='Search'
 					type='string'
@@ -49,21 +40,9 @@ export const TransferFilter = ({
 					onChangeText={setSearch}
 				/>
 			</View>
-			<View
-				style={{
-					flexDirection: 'row',
-					gap: 12,
-					alignItems: 'center',
-					marginBottom: 20,
-				}}
-			>
+			<View style={styles.filterRow}>
 				<BaseText>Filter by:</BaseText>
-				<View
-					style={{
-						flexDirection: 'row',
-						gap: 10,
-					}}
-				>
+				<View style={styles.tagGroup}>
 					<FilterTag
 						text='Payeer'
 						isSelected={filter === 'payeer'}
@@ -76,20 +55,9 @@ export const TransferFilter = ({
 					/>
 				</View>
 			</View>
-			<View
-				style={{
-					flexDirection: 'row',
-					alignItems: 'center',
-					gap: 10,
-				}}
-			>
+			<View style={styles.dateRow}>
 				<BaseText>Date:</BaseText>
-				<View
-					style={{
-						flexDirection: 'row',
-						gap: 10,
-					}}
-				>
+				<View style={styles.tagGroup}>
 					<FilterDateTag
 						text='Fecha'
 						value={filterDate}
@@ -107,3 +75,28 @@ export const TransferFilter = ({
 		</View>
 	);
 };
+
+const styles = StyleSheet.create({
+	container: {
+		width: '100%',
+	},
+	searchContainer: {
+		width: '100%',
+		marginBottom: 10,
+	},
+	filterRow: {
+		flexDirection: 'row',
+		gap: 12,
+		alignItems: 'center',
+		marginBottom: 20,
+	},
+	tagGroup: {
+		flexDirection: 'row',
+		gap: 10,
+	},
+	dateRow: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		gap: 10,
+	},
+});

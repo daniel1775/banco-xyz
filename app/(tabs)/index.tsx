@@ -15,12 +15,7 @@ export default function BalanceScreen() {
 
 	if (isLoading) {
 		return (
-			<ScreenLayout
-				containerStyles={{
-					justifyContent: 'center',
-					alignItems: 'center',
-				}}
-			>
+			<ScreenLayout containerStyles={styles.loaderContainer}>
 				<Loading />
 			</ScreenLayout>
 		);
@@ -46,6 +41,10 @@ const styles = StyleSheet.create({
 		flex: 1,
 		alignItems: 'center',
 		width: '95%',
+	},
+	loaderContainer: {
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 	title: {
 		marginBottom: 32,

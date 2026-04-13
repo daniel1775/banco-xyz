@@ -1,7 +1,6 @@
 import { FlatList, StyleSheet, View } from 'react-native';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-import { formatTransferDate } from '@/src/utils/formatTransferDate';
 import { useQueryGetTransferList } from '@/src/hooks/queries/useQueryGetTransferList';
 
 import { ScreenLayout } from '@/src/UI/layouts/ScreenLayout';
@@ -29,7 +28,7 @@ export default function TransferListScreen() {
 
 	return (
 		<ScreenLayout>
-			<Title style={{ marginBottom: 40 }}>Transfer list</Title>
+			<Title style={styles.title}>Transfer list</Title>
 			<TransferFilter
 				search={search}
 				setSearch={setSearch}
@@ -38,14 +37,7 @@ export default function TransferListScreen() {
 				filterDate={filterDate}
 				setFilterDate={setFilterDate}
 			/>
-			<View
-				style={{
-					flexDirection: 'row',
-					gap: 10,
-					marginBottom: 20,
-					alignItems: 'center',
-				}}
-			></View>
+			<View style={styles.filterContainer}></View>
 			{isLoading ? (
 				<View style={styles.loadingContainer}>
 					<Loading />
@@ -55,9 +47,7 @@ export default function TransferListScreen() {
 					data={transferListToShow}
 					renderItem={({ item }) => <TransferCard transferData={item} />}
 					keyExtractor={(item, index) => index.toString()}
-					style={{
-						width: '100%',
-					}}
+					style={styles.list}
 				/>
 			)}
 		</ScreenLayout>
@@ -69,5 +59,17 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		height: 220,
+	},
+	title: {
+		marginBottom: 40,
+	},
+	filterContainer: {
+		flexDirection: 'row',
+		gap: 10,
+		marginBottom: 20,
+		alignItems: 'center',
+	},
+	list: {
+		width: '100%',
 	},
 });
