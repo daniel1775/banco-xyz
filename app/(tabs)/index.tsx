@@ -7,6 +7,7 @@ import { ScreenLayout } from '@/src/UI/layouts/ScreenLayout';
 import { Title } from '@/src/UI/atoms/general/Title';
 import { PersonalBalance } from '@/src/UI/organisms/balance/PersonalBalance';
 import { Loading } from '@/src/UI/atoms/general/Loading';
+import { SignOutButton } from '@/src/UI/atoms/auth/SignOutButton';
 
 export default function BalanceScreen() {
 	const { userBalanceData, isLoading } = useQueryGetBalance();
@@ -32,6 +33,9 @@ export default function BalanceScreen() {
 					accountBalance={userBalanceData?.accountBalance}
 				/>
 			</View>
+			<View style={styles.signOutContainer}>
+				<SignOutButton />
+			</View>
 		</ScreenLayout>
 	);
 }
@@ -45,6 +49,9 @@ const styles = StyleSheet.create({
 	loaderContainer: {
 		justifyContent: 'center',
 		alignItems: 'center',
+	},
+	signOutContainer: {
+		marginBottom: 24,
 	},
 	title: {
 		marginBottom: 32,

@@ -12,3 +12,7 @@ export const getAuthUser = async (): Promise<TypeLoginUserResponse | null> => {
 	const user = await AsyncStorage.getItem('user');
 	return user ? JSON.parse(user) : null;
 };
+
+export const removeAuthUser = async (): Promise<void> => {
+	await AsyncStorage.removeItem('user');
+};
