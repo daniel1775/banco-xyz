@@ -6,6 +6,7 @@ import { useQueryPostTransfer } from '@/src/hooks/queries/useQueryPostTransfer';
 import { FormTextField } from '@/UI/atoms/form/FormTextField';
 import { FormDateField } from '@/UI/atoms/form/FormDateField';
 import { Button } from '@/src/UI/atoms/general/Button';
+import { ModalInfo } from '@/UI/molecules/modal/ModalInfo';
 
 import type { TypeFormErrors } from '@/src/types/transfer';
 
@@ -15,6 +16,8 @@ export const CreateTransferForm = () => {
 	const [payeerDocument, setPayeerDocument] = useState('');
 	const [date, setDate] = useState(new Date());
 	const [errors, setErrors] = useState<TypeFormErrors>({});
+	const [showModalError, setShowModalError] = useState(false);
+	const [showModalSuccess, setShowModalSuccess] = useState(false);
 
 	const { submitTransfer, isLoading } = useQueryPostTransfer();
 
@@ -49,10 +52,27 @@ export const CreateTransferForm = () => {
 			payeerDocument,
 			transferDate: date,
 		});
+		setShowModalSuccess(true);
 	};
 
 	return (
 		<View style={styles.container}>
+			<ModalInfo
+				visible={showModalError}
+				title='Something went wrong'
+				message='Please try again'
+				onClose={() => {
+					setShowModalError(false);
+				}}
+			/>
+			<ModalInfo
+				visible={showModalSuccess}
+				title='Transfer created correctly!'
+				onClose={() => {
+					setShowModalSuccess(false);
+				}}
+			/>
+
 			<FormTextField
 				label='Value'
 				placeholder='Value'
