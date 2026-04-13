@@ -7,25 +7,19 @@ import { FormTextField } from '@/UI/atoms/form/FormTextField';
 import { FormDateField } from '@/UI/atoms/form/FormDateField';
 import { Button } from '@/src/UI/atoms/general/Button';
 
-type CreateTransferFormProps = {};
+import type { TypeFormErrors } from '@/src/types/transfer';
 
-type FormErrors = {
-	value?: string;
-	currency?: string;
-	payeerDocument?: string;
-};
-
-export const CreateTransferForm = ({}: CreateTransferFormProps) => {
+export const CreateTransferForm = () => {
 	const [value, setValue] = useState('');
 	const [currency, setCurrency] = useState('');
 	const [payeerDocument, setPayeerDocument] = useState('');
 	const [date, setDate] = useState(new Date());
-	const [errors, setErrors] = useState<FormErrors>({});
+	const [errors, setErrors] = useState<TypeFormErrors>({});
 
 	const { submitTransfer, isLoading } = useQueryPostTransfer();
 
 	const validate = (): boolean => {
-		const newErrors: FormErrors = {};
+		const newErrors: TypeFormErrors = {};
 
 		if (!value.trim()) {
 			newErrors.value = 'Value is required.';

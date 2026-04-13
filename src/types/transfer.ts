@@ -18,3 +18,9 @@ export type TypeTransferListResponse = {
 		name: string;
 	};
 };
+
+export type TypeFormErrors = {
+	value?: string;
+	currency?: string;
+	payeerDocument?: string;
+};
