@@ -19,7 +19,7 @@ describe('SignOutButton', () => {
 	beforeEach(() => {
 		jest.clearAllMocks();
 		(useRouter as jest.Mock).mockReturnValue({
-			replace: mockReplace,
+			push: mockReplace,
 		});
 	});
 

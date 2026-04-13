@@ -3,31 +3,27 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { useState } from 'react';
 
 import { BaseText } from '@/UI/atoms/general/BaseText';
+import { formatTransferDate } from '@/src/utils/formatTransferDate';
 
 type FilterDateTagProps = {
-	text: string;
 	value: Date | null;
 	onChange: (date: Date) => void;
 };
 
-export const FilterDateTag = ({ text, value, onChange }: FilterDateTagProps) => {
+export const FilterDateTag = ({ value, onChange }: FilterDateTagProps) => {
 	const [showModal, setShowModal] = useState(false);
-
-	const displayText = value
-		? `${text}: ${value.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit' })}`
-		: text;
 
 	return (
 		<Pressable
 			onPress={() => setShowModal(true)}
 			style={[styles.tag, value ? styles.selected : styles.notSelected]}
 		>
-			<BaseText>{displayText}</BaseText>
+			<BaseText>{`${value ? formatTransferDate(value) : '-'}`}</BaseText>
 			{showModal && (
 				<DateTimePicker
 					value={value || new Date()}
-					mode="date"
-					display="default"
+					mode='date'
+					display='default'
 					style={styles.datePicker}
 					onValueChange={(event, date) => {
 						setShowModal(false);

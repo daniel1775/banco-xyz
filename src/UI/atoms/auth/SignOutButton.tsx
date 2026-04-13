@@ -9,7 +9,7 @@ export const SignOutButton = () => {
 	const onPress = async () => {
 		try {
 			await removeAuthUser();
-			router.replace('../');
+			router.push('../');
 		} catch (err) {
 			console.error('Error while sign out user: ', err);
 		}

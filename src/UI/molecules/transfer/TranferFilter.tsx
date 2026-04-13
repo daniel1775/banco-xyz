@@ -1,4 +1,5 @@
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Pressable } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 import { FormTextField } from '@/UI/atoms/form/FormTextField';
 import { BaseText } from '@/UI/atoms/general/BaseText';
@@ -56,19 +57,23 @@ export const TransferFilter = ({
 				</View>
 			</View>
 			<View style={styles.dateRow}>
-				<BaseText>Date:</BaseText>
+				<BaseText>Filter by date:</BaseText>
 				<View style={styles.tagGroup}>
 					<FilterDateTag
-						text='Fecha'
 						value={filterDate}
 						onChange={setFilterDate}
 					/>
 					{filterDate && (
-						<FilterTag
-							text='Limpiar'
-							isSelected={false}
+						<Pressable
+							style={styles.closeButton}
 							onPress={() => setFilterDate(null)}
-						/>
+						>
+							<Ionicons
+								name='close'
+								size={28}
+								color='#797575ff'
+							/>
+						</Pressable>
 					)}
 				</View>
 			</View>
@@ -98,5 +103,9 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 		gap: 10,
+	},
+	closeButton: {
+		alignItems: 'center',
+		justifyContent: 'center',
 	},
 });
