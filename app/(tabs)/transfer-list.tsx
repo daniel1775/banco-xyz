@@ -1,4 +1,4 @@
-import { FlatList, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import { useEffect, useState } from 'react';
 
 import { formatTransferDate } from '@/src/utils/formatTransferDate';
@@ -8,9 +8,10 @@ import { ScreenLayout } from '@/src/UI/layouts/ScreenLayout';
 import { Title } from '@/src/UI/atoms/general/Title';
 import { TransferCard } from '@/src/UI/molecules/transfer/TransferCard';
 import { TransferFilter } from '@/UI/molecules/transfer/TranferFilter';
+import { Loading } from '@/src/UI/atoms/general/Loading';
 
 export default function TransferListScreen() {
-	const { transferList } = useQueryGetTransferList();
+	const { transferList, isLoading } = useQueryGetTransferList();
 
 	const [search, setSearch] = useState('');
 	const [filter, setFilter] = useState<'payeer' | 'value'>('payeer');
@@ -66,14 +67,28 @@ export default function TransferListScreen() {
 					alignItems: 'center',
 				}}
 			></View>
-			<FlatList
-				data={transferListToShow}
-				renderItem={({ item }) => <TransferCard transferData={item} />}
-				keyExtractor={(item, index) => index.toString()}
-				style={{
-					width: '100%',
-				}}
-			/>
+			{!isLoading ? (
+				<View style={styles.loadingContainer}>
+					<Loading />
+				</View>
+			) : (
+				<FlatList
+					data={transferListToShow}
+					renderItem={({ item }) => <TransferCard transferData={item} />}
+					keyExtractor={(item, index) => index.toString()}
+					style={{
+						width: '100%',
+					}}
+				/>
+			)}
 		</ScreenLayout>
 	);
 }
+
+const styles = StyleSheet.create({
+	loadingContainer: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		height: 220,
+	},
+});
