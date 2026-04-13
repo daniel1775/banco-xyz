@@ -1,7 +1,9 @@
-import { FlatList } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { useEffect, useState } from 'react';
 
+import { formatTransferDate } from '@/src/utils/formatTransferDate';
 import { useQueryGetTransferList } from '@/src/hooks/queries/useQueryGetTransferList';
+
 import { ScreenLayout } from '@/src/UI/layouts/ScreenLayout';
 import { Title } from '@/src/UI/atoms/general/Title';
 import { TransferCard } from '@/src/UI/molecules/transfer/TransferCard';
@@ -12,33 +14,38 @@ export default function TransferListScreen() {
 
 	const [search, setSearch] = useState('');
 	const [filter, setFilter] = useState<'payeer' | 'value'>('payeer');
+	const [filterDate, setFilterDate] = useState<Date | null>(null);
 	const [transferListToShow, setTransferListToShow] = useState(transferList);
 
 	useEffect(() => {
 		const handleFilter = () => {
-			if (!search) {
-				setTransferListToShow(transferList);
+			let result = transferList;
+
+			if (!result) return;
+
+			if (search) {
+				if (filter === 'payeer') {
+					result = result.filter((item) =>
+						item.payeer.name.toLowerCase().includes(search.toLowerCase()),
+					);
+				} else if (filter === 'value') {
+					result = result.filter((item) =>
+						item.value.toString().includes(search),
+					);
+				}
 			}
 
-			if (filter === 'payeer') {
-				const transferFiltered = transferList?.filter((item) =>
-					item.payeer.name.toLowerCase().includes(search.toLowerCase()),
-				);
-				setTransferListToShow(transferFiltered);
-				return;
+			if (filterDate) {
+				const dateFormatted = formatTransferDate(filterDate);
+
+				result = result.filter((item) => item.date === dateFormatted);
 			}
 
-			if (filter === 'value') {
-				const transferFiltered = transferList?.filter((item) =>
-					item.value.toString().includes(search),
-				);
-				setTransferListToShow(transferFiltered);
-				return;
-			}
+			setTransferListToShow(result);
 		};
 
 		handleFilter();
-	}, [transferList, search]);
+	}, [transferList, search, filter, filterDate]);
 
 	return (
 		<ScreenLayout>
@@ -48,7 +55,17 @@ export default function TransferListScreen() {
 				setSearch={setSearch}
 				filter={filter}
 				setFilter={setFilter}
+				filterDate={filterDate}
+				setFilterDate={setFilterDate}
 			/>
+			<View
+				style={{
+					flexDirection: 'row',
+					gap: 10,
+					marginBottom: 20,
+					alignItems: 'center',
+				}}
+			></View>
 			<FlatList
 				data={transferListToShow}
 				renderItem={({ item }) => <TransferCard transferData={item} />}

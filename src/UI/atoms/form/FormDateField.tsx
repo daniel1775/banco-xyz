@@ -6,13 +6,15 @@ import { Ionicons } from '@expo/vector-icons';
 type FormDateFieldProps = {
 	value: Date;
 	setValue: (date: Date) => void;
-	placeholder: string;
+	placeholder?: string;
+	label?: string;
 };
 
 export const FormDateField = ({
 	value,
 	setValue,
 	placeholder,
+	label,
 }: FormDateFieldProps) => {
 	const [showModal, setShowModal] = useState(false);
 
@@ -24,7 +26,7 @@ export const FormDateField = ({
 
 	return (
 		<View>
-			<Text style={styles.label}>{`${placeholder}:`}</Text>
+			{label && <Text style={styles.label}>{`${label}:`}</Text>}
 			<Pressable
 				style={styles.inputContainer}
 				onPress={() => {

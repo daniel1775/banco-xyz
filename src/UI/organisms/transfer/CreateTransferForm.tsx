@@ -19,18 +19,21 @@ export const CreateTransferForm = ({}: CreateTransferFormProps) => {
 	return (
 		<View style={styles.container}>
 			<FormTextField
+				label='Value'
 				placeholder='Value'
 				type='number'
 				value={value}
 				onChangeText={setValue}
 			/>
 			<FormTextField
+				label='Currency'
 				placeholder='Currency'
 				type='string'
 				value={currency}
 				onChangeText={setCurrency}
 			/>
 			<FormTextField
+				label='Payeer document'
 				placeholder='Payeer document'
 				type='string'
 				value={payeerDocument}
@@ -40,6 +43,7 @@ export const CreateTransferForm = ({}: CreateTransferFormProps) => {
 				value={date}
 				setValue={setDate}
 				placeholder='Transfer date'
+				label='Tranfer date'
 			/>
 			<Button
 				label='Send'

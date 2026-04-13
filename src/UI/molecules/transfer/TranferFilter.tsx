@@ -3,12 +3,15 @@ import { View } from 'react-native';
 import { FormTextField } from '@/UI/atoms/form/FormTextField';
 import { BaseText } from '@/UI/atoms/general/BaseText';
 import { FilterTag } from '@/UI/atoms/general/FilterTag';
+import { FilterDateTag } from '../../atoms/general/FilterDateTag';
 
 type TransferFilterProps = {
 	search: string;
 	setSearch: (search: string) => void;
 	filter: 'payeer' | 'value';
 	setFilter: (filter: 'payeer' | 'value') => void;
+	filterDate: Date | null;
+	setFilterDate: (value: Date | null) => void;
 };
 
 export const TransferFilter = ({
@@ -16,6 +19,8 @@ export const TransferFilter = ({
 	setSearch,
 	filter,
 	setFilter,
+	filterDate,
+	setFilterDate,
 }: TransferFilterProps) => {
 	const onPressFilterTag = () => {
 		if (filter === 'payeer') {
@@ -69,6 +74,34 @@ export const TransferFilter = ({
 						isSelected={filter === 'value'}
 						onPress={onPressFilterTag}
 					/>
+				</View>
+			</View>
+			<View
+				style={{
+					flexDirection: 'row',
+					alignItems: 'center',
+					gap: 10,
+				}}
+			>
+				<BaseText>Date:</BaseText>
+				<View
+					style={{
+						flexDirection: 'row',
+						gap: 10,
+					}}
+				>
+					<FilterDateTag
+						text='Fecha'
+						value={filterDate}
+						onChange={setFilterDate}
+					/>
+					{filterDate && (
+						<FilterTag
+							text='Limpiar'
+							isSelected={false}
+							onPress={() => setFilterDate(null)}
+						/>
+					)}
 				</View>
 			</View>
 		</View>
