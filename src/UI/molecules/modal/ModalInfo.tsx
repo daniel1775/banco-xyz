@@ -1,7 +1,7 @@
-import { Modal, StyleSheet, View, Pressable } from 'react-native';
+import { Modal, StyleSheet, View } from 'react-native';
 
-import { BaseText } from '@/UI/atoms/general/BaseText';
-import { Title } from '@/UI/atoms/general/Title';
+import { BaseText } from '@/src/UI/atoms/general/BaseText';
+import { Title } from '@/src/UI/atoms/general/Title';
 import { Button } from '@/src/UI/atoms/general/Button';
 
 type TypeModalInfoProps = {
@@ -26,11 +26,19 @@ export const ModalInfo = ({
 			<View style={styles.container}>
 				<View style={styles.modal}>
 					<View style={styles.textContainer}>
-						<Title size='h2' style={styles.title}>{title}</Title>
+						<Title
+							size='h2'
+							style={styles.title}
+						>
+							{title}
+						</Title>
 						{message && <BaseText style={styles.message}>{message}</BaseText>}
 					</View>
 
-					<Button label='Accept' onPress={onClose} />
+					<Button
+						label='Accept'
+						onPress={onClose}
+					/>
 				</View>
 			</View>
 		</Modal>

@@ -3,10 +3,10 @@ import { useState } from 'react';
 
 import { useQueryPostTransfer } from '@/src/hooks/queries/useQueryPostTransfer';
 
-import { FormTextField } from '@/UI/atoms/form/FormTextField';
-import { FormDateField } from '@/UI/atoms/form/FormDateField';
+import { FormTextField } from '@/src/UI/atoms/form/FormTextField';
+import { FormDateField } from '@/src/UI/atoms/form/FormDateField';
 import { Button } from '@/src/UI/atoms/general/Button';
-import { ModalInfo } from '@/UI/molecules/modal/ModalInfo';
+import { ModalInfo } from '@/src/UI/molecules/modal/ModalInfo';
 
 import type { TypeFormErrors } from '@/src/types/transfer';
 
@@ -104,7 +104,6 @@ export const CreateTransferForm = () => {
 			<FormDateField
 				value={date}
 				setValue={setDate}
-				placeholder='Transfer date'
 				label='Tranfer date'
 			/>
 			<Button

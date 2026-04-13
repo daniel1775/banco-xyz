@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet } from 'react-native';
 
-import { BaseText } from '@/UI/atoms/general/BaseText';
+import { BaseText } from '@/src/UI/atoms/general/BaseText';
 
 type FilterTagProps = {
 	text: string;
@@ -12,10 +12,7 @@ export const FilterTag = ({ text, isSelected, onPress }: FilterTagProps) => {
 	return (
 		<Pressable
 			onPress={onPress}
-			style={[
-				styles.tag,
-				isSelected ? styles.selected : styles.notSelected,
-			]}
+			style={[styles.tag, isSelected ? styles.selected : styles.notSelected]}
 		>
 			<BaseText>{text}</BaseText>
 		</Pressable>

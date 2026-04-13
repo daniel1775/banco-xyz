@@ -37,8 +37,16 @@ export const FormTextField = ({
 					autoCapitalize='none'
 				/>
 				{rightIcon && (
-					<Pressable onPress={onPressRightIcon} style={styles.rightIcon}>
-						<Ionicons name={rightIcon} size={20} color='#797575ff' />
+					<Pressable
+						onPress={onPressRightIcon}
+						style={styles.rightIcon}
+						testID='clear-button'
+					>
+						<Ionicons
+							name={rightIcon}
+							size={20}
+							color='#797575ff'
+						/>
 					</Pressable>
 				)}
 			</View>

@@ -1,10 +1,10 @@
 import { View, StyleSheet, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-import { FormTextField } from '@/UI/atoms/form/FormTextField';
-import { BaseText } from '@/UI/atoms/general/BaseText';
-import { FilterTag } from '@/UI/atoms/general/FilterTag';
-import { FilterDateTag } from '../../atoms/general/FilterDateTag';
+import { FormTextField } from '@/src/UI/atoms/form/FormTextField';
+import { BaseText } from '@/src/UI/atoms/general/BaseText';
+import { FilterTag } from '@/src/UI/atoms/general/FilterTag';
+import { FilterDateTag } from '@/src/UI/atoms/general/FilterDateTag';
 
 type TransferFilterProps = {
 	search: string;
@@ -69,6 +69,7 @@ export const TransferFilter = ({
 						<Pressable
 							style={styles.closeButton}
 							onPress={() => setFilterDate(null)}
+							testID='clear-date-button'
 						>
 							<Ionicons
 								name='close-circle'

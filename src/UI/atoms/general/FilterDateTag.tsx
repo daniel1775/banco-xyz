@@ -2,7 +2,7 @@ import { Pressable, StyleSheet } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useState } from 'react';
 
-import { BaseText } from '@/UI/atoms/general/BaseText';
+import { BaseText } from '@/src/UI/atoms/general/BaseText';
 import { formatTransferDate } from '@/src/utils/formatTransferDate';
 
 type FilterDateTagProps = {

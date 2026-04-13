@@ -6,14 +6,12 @@ import { Ionicons } from '@expo/vector-icons';
 type FormDateFieldProps = {
 	value: Date;
 	setValue: (date: Date) => void;
-	placeholder?: string;
 	label?: string;
 };
 
 export const FormDateField = ({
 	value,
 	setValue,
-	placeholder,
 	label,
 }: FormDateFieldProps) => {
 	const [showModal, setShowModal] = useState(false);
