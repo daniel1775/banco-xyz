@@ -45,9 +45,9 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		alignItems: 'center',
-		width: '90%',
+		width: '95%',
 	},
 	title: {
-		marginBottom: 28,
+		marginBottom: 32,
 	},
 });

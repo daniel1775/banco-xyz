@@ -9,6 +9,7 @@ import { Title } from '@/src/UI/atoms/general/Title';
 import { TransferCard } from '@/src/UI/molecules/transfer/TransferCard';
 import { TransferFilter } from '@/UI/molecules/transfer/TranferFilter';
 import { Loading } from '@/src/UI/atoms/general/Loading';
+import { useFilterTransfers } from '@/src/hooks/transfer/useFilterTransfers';
 
 export default function TransferListScreen() {
 	const { transferList, isLoading } = useQueryGetTransferList();
@@ -18,35 +19,13 @@ export default function TransferListScreen() {
 	const [filterDate, setFilterDate] = useState<Date | null>(null);
 	const [transferListToShow, setTransferListToShow] = useState(transferList);
 
-	useEffect(() => {
-		const handleFilter = () => {
-			let result = transferList;
-
-			if (!result) return;
-
-			if (search) {
-				if (filter === 'payeer') {
-					result = result.filter((item) =>
-						item.payeer.name.toLowerCase().includes(search.toLowerCase()),
-					);
-				} else if (filter === 'value') {
-					result = result.filter((item) =>
-						item.value.toString().includes(search),
-					);
-				}
-			}
-
-			if (filterDate) {
-				const dateFormatted = formatTransferDate(filterDate);
-
-				result = result.filter((item) => item.date === dateFormatted);
-			}
-
-			setTransferListToShow(result);
-		};
-
-		handleFilter();
-	}, [transferList, search, filter, filterDate]);
+	useFilterTransfers({
+		transferList,
+		search,
+		filter,
+		filterDate,
+		setTransferListToShow,
+	});
 
 	return (
 		<ScreenLayout>
@@ -67,7 +46,7 @@ export default function TransferListScreen() {
 					alignItems: 'center',
 				}}
 			></View>
-			{!isLoading ? (
+			{isLoading ? (
 				<View style={styles.loadingContainer}>
 					<Loading />
 				</View>
