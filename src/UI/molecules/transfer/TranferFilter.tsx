@@ -39,6 +39,8 @@ export const TransferFilter = ({
 					type='string'
 					value={search}
 					onChangeText={setSearch}
+					rightIcon={search ? 'close-circle' : undefined}
+					onPressRightIcon={() => setSearch('')}
 				/>
 			</View>
 			<View style={styles.filterRow}>
@@ -69,8 +71,8 @@ export const TransferFilter = ({
 							onPress={() => setFilterDate(null)}
 						>
 							<Ionicons
-								name='close'
-								size={28}
+								name='close-circle'
+								size={20}
 								color='#797575ff'
 							/>
 						</Pressable>
