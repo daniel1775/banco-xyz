@@ -53,6 +53,10 @@ export const CreateTransferForm = () => {
 			transferDate: date,
 		});
 		setShowModalSuccess(true);
+		setValue('');
+		setCurrency('');
+		setPayeerDocument('');
+		setDate(new Date());
 	};
 
 	return (
