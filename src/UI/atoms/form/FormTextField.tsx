@@ -6,6 +6,7 @@ type FormTextFieldProps = {
 	value: string;
 	onChangeText: (text: string) => void;
 	label?: string;
+	error?: string;
 };
 
 export const FormTextField = ({
@@ -14,12 +15,13 @@ export const FormTextField = ({
 	value,
 	onChangeText,
 	label,
+	error,
 }: FormTextFieldProps) => {
 	return (
 		<View>
 			{label && <Text style={styles.label}>{`${label}:`}</Text>}
 			<TextInput
-				style={styles.container}
+				style={[styles.container, !!error && styles.containerError]}
 				placeholderTextColor={'#797575ff'}
 				placeholder={placeholder}
 				value={value}
@@ -28,6 +30,7 @@ export const FormTextField = ({
 				secureTextEntry={type === 'password'}
 				autoCapitalize='none'
 			/>
+			{!!error && <Text style={styles.errorText}>{error}</Text>}
 		</View>
 	);
 };
@@ -44,5 +47,13 @@ const styles = StyleSheet.create({
 	},
 	label: {
 		marginBottom: 4,
+	},
+	containerError: {
+		borderColor: '#d32f2f',
+	},
+	errorText: {
+		color: '#d32f2f',
+		fontSize: 12,
+		marginTop: 4,
 	},
 });
