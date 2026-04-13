@@ -1,43 +1,34 @@
-import { ScrollView, Text, View } from 'react-native';
+import { FlatList } from 'react-native';
+import { useState } from 'react';
 
 import { useQueryGetTransferList } from '@/src/hooks/queries/useQueryGetTransferList';
 import { ScreenLayout } from '@/src/UI/layouts/ScreenLayout';
 import { Title } from '@/src/UI/atoms/general/Title';
 import { TransferCard } from '@/src/UI/molecules/transfer/TransferCard';
-import { useState } from 'react';
-import { FormTextField } from '@/src/UI/atoms/form/FormTextField';
+import { TransferFilter } from '@/UI/molecules/transfer/TranferFilter';
 
 export default function TransferListScreen() {
 	const { transferList } = useQueryGetTransferList();
 	const [search, setSearch] = useState('');
+	const [filter, setFilter] = useState<'payeer' | 'value'>('payeer');
 
 	return (
 		<ScreenLayout>
 			<Title style={{ marginBottom: 40 }}>Transfer list</Title>
-			<View
-				style={{
-					width: '100%',
-					marginBottom: 30,
-				}}
-			>
-				<FormTextField
-					placeholder='Search'
-					type='string'
-					value={search}
-					onChangeText={setSearch}
-				/>
-			</View>
-			<ScrollView
+			<TransferFilter
+				search={search}
+				setSearch={setSearch}
+				filter={filter}
+				setFilter={setFilter}
+			/>
+			<FlatList
+				data={transferList}
+				renderItem={({ item }) => <TransferCard transferData={item} />}
+				keyExtractor={(item, index) => index.toString()}
 				style={{
 					width: '100%',
 				}}
-			>
-				{transferList?.map((transfer, index) => (
-					<View key={index}>
-						<TransferCard transferData={transfer} />
-					</View>
-				))}
-			</ScrollView>
+			/>
 		</ScreenLayout>
 	);
 }

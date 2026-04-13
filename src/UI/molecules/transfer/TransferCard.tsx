@@ -17,7 +17,7 @@ export const TransferCard = ({ transferData }: TransferCardProps) => {
 					<Text style={styles.document}>Doc: {payeer.document}</Text>
 				</View>
 				<View style={styles.amountInfo}>
-					<Text style={styles.amount}>+ ${value.toFixed(2)}</Text>
+					<Text style={styles.amount}>${value.toFixed(2)}</Text>
 					<Text style={styles.currency}>{currency}</Text>
 				</View>
 			</View>
