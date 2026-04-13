@@ -11,8 +11,6 @@ export default function RootLayout() {
 	const { authUser } = useGetAuthUser();
 
 	useEffect(() => {
-		console.log('authUser', authUser);
-
 		if (authUser) {
 			router.push('/(tabs)');
 		}
